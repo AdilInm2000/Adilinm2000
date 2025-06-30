@@ -1,52 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Adil Inmouh Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+    position: relative;
+    z-index: 1;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #111;
+            color: #eee;
+        }
+        header {
+            background: #1b1b1b;
+            padding: 60px 20px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeIn 1s ease forwards;
+        }
+        header h1 {
+    font-size: 64px;
+    color: #ccc;
+    margin: 0;
+    letter-spacing: -2px;
+    text-shadow: 2px 2px 8px rgba(255, 81, 0, 0.4);
+    animation: pulse 3s infinite;
+}
+        header span {
+            color: #ff5100;
+            font-size: 30px;
+            background: #333;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+        .section-title {
+            font-size: 32px;
+            color: #fff;
+            border-left: 4px solid #ff5100;
+            padding-left: 12px;
+            margin-bottom: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .card {
+  background: rgba(30, 30, 30, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #ff5100;
+        }
+        .contact-links a {
+            display: inline-block;
+            margin: 5px 10px 5px 0;
+            background: #ff5100;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .contact-links a:hover {
+            background: #e64a00;
+            transform: scale(1.05);
+        }
+        .about-container {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+        .about-container img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ff5100;
+            justify-self: center;
+            transition: transform 0.8s ease;
+            transform-style: preserve-3d;
+        }
+        .about-container img:hover {
+            transform: rotateY(360deg);
+        }
+        footer {
+            background: #1b1b1b;
+            color: #666;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { text-shadow: 2px 2px 8px rgba(255, 81, 0, 0.4); }
+    50% { text-shadow: 2px 2px 20px rgba(255, 81, 0, 0.8); }
+    100% { text-shadow: 2px 2px 8px rgba(255, 81, 0, 0.4); }
+}
+        }
+    
+
+.shape.triangle {
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid #ff5100;
+  top: 70%;
+  left: 20%;
+  animation-delay: 4s;
+  opacity: 0.1;
+}
+
+.shape.square {
+  width: 100px;
+  height: 100px;
+  background: #ff6f00;
+  top: 30%;
+  left: 50%;
+  animation-delay: 3s;
+  opacity: 0.12;
+}
+
+.shape.blob {
+  width: 220px;
+  height: 220px;
+  background: #ffa500;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  top: 80%;
+  left: 70%;
+  animation-delay: 6s;
+  opacity: 0.08;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Card gradient accents */
+.card {
+  background: linear-gradient(135deg, #1e1e1e, #191919);
+  position: relative;
+  z-index: 1;
+}
+
+/* Section title icon */
+.section-title::before {
+  content: '★';
+  color: #ff5100;
+  margin-right: 10px;
+}
+
+.background-wrapper {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.background-shapes {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float 10s ease-in-out infinite;
+}
+
+.shape.one {
+    width: 200px;
+    height: 200px;
+    background: #ff5100;
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+
+
+.shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid #ff5100;
+    top: 70%;
+    left: 20%;
+    animation-delay: 4s;
+    opacity: 0.1;
+}
+
+.shape.square {
+    width: 100px;
+    height: 100px;
+    background: #ff6f00;
+    top: 30%;
+    left: 50%;
+    animation-delay: 3s;
+    opacity: 0.12;
+}
+
+.shape.blob {
+    width: 220px;
+    height: 220px;
+    background: #ffa500;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    top: 80%;
+    left: 70%;
+    animation-delay: 6s;
+    opacity: 0.08;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.wave {
+  position: relative;
+  z-index: 1;
+  margin-top: -1px;
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* Custom Cursor */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #ff5100;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1000;
+  transition: transform 0.1s ease;
+}
+
+.cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 81, 0, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  transition: transform 0.2s ease;
+}
+
+
+</style>
+
+
 </head>
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <p>Web Developer • Designer • Tech Enthusiast</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <img src="images/your-photo.jpg" alt="Your photo" />
-    <p>Hi! I'm a creative web developer passionate about crafting beautiful digital experiences. I specialize in building responsive websites and modern web apps with clean code and thoughtful UI/UX.</p>
-  </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Interactive Portfolio</h3>
-      <p>A sleek and responsive developer portfolio with animations and custom design.</p>
-      <a href="https://github.com/yourusername/project1" target="_blank">View Code</a>
+<div class="cursor-dot"></div>
+<div class="cursor-trail"></div>
+<div class="background-wrapper">
+  <div class="background-shapes">
+    
     </div>
-    <div class="project">
-      <h3>Task Manager App</h3>
-      <p>A simple yet powerful task tracker built using modern JavaScript.</p>
-      <a href="https://github.com/yourusername/project2" target="_blank">View Code</a>
-    </div>
-  </section>
+</div>
+  
+  <div class="shape triangle"></div>
+  <div class="shape square"></div>
+  <div class="shape blob"></div>
+</div>
+  
+</div>
+    <header style="background: #1b1b1b; padding: 60px 20px 120px; text-align: center; clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);">
+  <h1>PORTFOLIO <span>2024</span></h1>
+  <p style="color:#ff5100; font-weight:bold; font-size: 2.2rem; text-shadow: 0 0 12px rgba(255, 81, 0, 0.7); letter-spacing: 1px;">Adil Inmouh</p>
+  <p><span id="typed-role">Software Developer</span></p>
+  <p>This portfolio contains some of my work and experience.</p>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>📧 Email: <a href="mailto:your@email.com">your@email.com</a></p>
-    <p>🐙 GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
-    <p>💼 LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
-  </section>
+</header>
 
-  <footer>
-    <p>&copy; 2025 Your Name — Made with ❤️</p>
-  </footer>
+<!-- SVG wave shape below header -->
+
+
+    <section>
+        <div class="section-title">About Me</div>
+        <div class="card about-container">
+            <img src="profile.jpg" alt="Adil Inmouh">
+            <div>
+                <p>Hello! I'm <strong>Adil Inmouh</strong>, a freelance Software Developer passionate about building clean, efficient, and impactful digital solutions. I specialize in crafting intuitive web and backend systems, and I'm constantly learning new technologies to sharpen my skills and bring ideas to life through code.</p>
+                <a href="Adil-Inmouh-CV.pdf" download style="display:inline-block; margin: 10px 0; background: #ff5100; color: white; padding: 8px 16px; border-radius: 5px; text-decoration: none; font-weight: bold;">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title">Education</div>
+        <div class="grid">
+            <div class="card">
+                <h3>2020 – 2024</h3>
+                <p>Universita degli studi di Palermo, Italy</p>
+                <p>Mathematics and IT Technology</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title">Experience</div>
+        <div class="grid">
+            <div class="card">
+                <h3>2025 – Present</h3>
+                <p>Freelance Software Developer</p>
+            </div>
+            <div class="card">
+                <h3>2023</h3>
+                <p>Marketing and SEO</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title">Skills</div>
+        <div class="grid">
+            <div class="card">
+<h3>Frontend</h3>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="40" style="margin: 5px; filter: grayscale(100%);">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="40" style="margin: 5px;">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" style="margin: 5px;">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" width="40" style="margin: 5px;">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="40" style="margin: 5px;">
+                <p>HTML, CSS, JavaScript</p>
+                <p>React, NodeJS</p>
+            </div>
+            <div class="card">
+<h3>Databases</h3>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="40" style="margin: 5px; filter: grayscale(100%);">
+                <p>SQL</p>
+            </div>
+            <div class="card">
+<h3>Backend</h3>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" width="40" style="margin: 5px; filter: grayscale(100%);">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" width="40" style="margin: 5px;">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="40" style="margin: 5px;">
+                <p>C, Java, PHP</p>
+            </div>
+            <div class="card">
+                <h3>Soft Skills</h3>
+                <p>Problem Solving</p>
+                <p>Time Management</p>
+                <p>Communication</p>
+                <p>Attention to Detail</p>
+            </div>
+        </div>
+    </section>
+
+    
+<footer>
+    &copy; 2025 Adil Inmouh. All rights reserved.
+<section>
+  <div class="section-title">Contact</div>
+  <div class="card">
+    <form action="https://formsubmit.co/Adilinm2000@gmail.com" method="POST" onsubmit="return showSuccess(event)">
+      <input type="hidden" name="_redirect" value="javascript:void(0);">
+
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none;"><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none;"><br>
+
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none;"></textarea><br>
+
+      <button type="submit" style="background: #ff5100; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Send Message</button>
+    </form>
+    <div id="success-message" style="display:none; text-align:center; padding:20px; background:#1e1e1e; color:#00ff88; font-weight:bold; border-radius:10px; margin-top:20px;">✅ Thank you! Your message has been sent.</div>
+  </div>
+</section>
+
+</footer>
+
+<script>
+// Change header background on scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.backgroundColor = '#2c2c2c';
+        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.5)';
+    } else {
+        header.style.backgroundColor = '#1b1b1b';
+        header.style.boxShadow = 'none';
+    }
+});
+
+// Greet the user when they click your name
+const nameElement = document.querySelector('header p');
+if (nameElement) {
+    nameElement.addEventListener('click', () => {
+        alert("Currently in Palermo,Italy");
+    });
+}
+
+// Typing carousel for roles
+const roles = ["Software Developer", "UI Designer", "Problem Solver"];
+let roleIndex = 0;
+let charIndex = 0;
+const typedSpan = document.getElementById("typed-role");
+
+function typeCarousel() {
+    if (charIndex < roles[roleIndex].length) {
+        typedSpan.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeCarousel, 100);
+    } else {
+        setTimeout(() => {
+            typedSpan.textContent = "";
+            charIndex = 0;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typeCarousel();
+        }, 2000);
+    }
+}
+typedSpan.textContent = "";
+typeCarousel();
+
+// Scroll-linked motion for background shapes
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    document.querySelectorAll('.shape').forEach((shape, i) => {
+        const speed = 0.3 + (i * 0.1);
+        shape.style.transform = `translateY(${scrollY * speed}px)`;
+    });
+});
+
+// Custom Cursor Movement
+const dot = document.querySelector('.cursor-dot');
+const trail = document.querySelector('.cursor-trail');
+
+window.addEventListener('mousemove', e => {
+  dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  trail.style.transform = `translate(${e.clientX - 6}px, ${e.clientY - 6}px)`;
+});
+
+// Show success message and hide form
+function showSuccess(e) {
+  e.preventDefault();
+  const form = e.target;
+  const msg = document.getElementById("success-message");
+  form.style.display = "none";
+  msg.style.display = "block";
+  setTimeout(() => form.submit(), 500); // continue real submission
+  return false;
+}
+</script>
+
+
+
 </body>
 </html>
